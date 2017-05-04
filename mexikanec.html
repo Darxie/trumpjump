@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TrumpJump</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="trump.css" type="text/css" media="screen">
+</head>
+<body onkeyup="jumping(event);" onkeypress="if (event.keyCode === 13){initialize();}">
+<div id="content">
+    <canvas width="800" height="480" id="canvas" style="background: url('img/trump.png')">
+    </canvas>
+    <div id="asset">
+        <button id="bottom" onclick="initialize();">
+            <img src="img/hraj.png" id="imgbtn" />
+        </button>
+    </div>
+</div>
+<script src="mexikanec.js"></script>
+<script src="wall.js"></script>
+<script src="TrumpEscape.js"></script>
+
+<div id="back">
+    <a href="index.html"><h1> Navrat domov </h1></a>
+</div>
+</body>
+</html>
