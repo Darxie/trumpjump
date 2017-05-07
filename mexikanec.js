@@ -34,19 +34,19 @@ class Mexikanec extends Object {
 }
 
 function up(){
-    this.y-=displacementOfJump;
-    this.updateBorders();
+    mexikanec.y-=displacementOfJump;
+    mexikanec.updateBorders();
     wall.updateBorders();
-    if(this.y <= vyska-420){
+    if(mexikanec.y <= vyska-420){
         clearInterval(jump);
         jump = setInterval("down()", jumpSpeed)
     }
 }
 function down() {
-    this.y+=displacementOfJump;
-    this.updateBorders();
+    mexikanec.y+=displacementOfJump;
+    mexikanec.updateBorders();
     wall.updateBorders();
-    if(this.y >= (surface-this.h)){
+    if(mexikanec.y >= (surface-mexikanec.h)){
         clearInterval(jump);
         canJump = true;
     }
@@ -62,3 +62,5 @@ function jumping(event){
         }
     }
 }
+
+const mexikanec = new Mexikanec();

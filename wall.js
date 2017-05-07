@@ -74,14 +74,18 @@ class Wall extends Object{
 }
 
 function wallCollision() {
-    while(this !== null){
-        if(this.collision(mexikanec)){
+    var temp = wall;
+    while(temp !== null){
+        if(temp.collision(mexikanec)){
             //koniec hry
             koniecHry();
             break;
         } else {
-            //noinspection JSAnnotator
-            this = this.isIncoming();
+            temp = temp.isIncoming();
         }
     }
+}
+const wall = new Wall(1000);
+for (i=0; i<=nwall;i++){
+    wall.add();
 }

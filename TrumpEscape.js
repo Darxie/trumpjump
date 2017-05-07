@@ -14,20 +14,6 @@ var isRunning;
 
 //classes
 
-class Object {
-    constructor() {
-        this.img = document.createElement("img");
-    }
-
-    collision(other) {
-        if ( this.bottom < other.top || this.top > other.bottom || this.right < other.left || this.left > other.right ) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-}
-
 class World {
     constructor() {
         this.x = 0;
@@ -56,8 +42,8 @@ class Time {
         this.limit = 10000;
         this.interval = 5000/(speed/3);
 
-        this.sound = document.getElementById("sound");
-        this.sound.src = "sound/maga.mp3"
+        //this.sound = document.getElementById("sound");
+        //this.sound.src = "sound/maga.mp3"
     }
     draw(){
         ctx.font = "25px Arial";
@@ -80,11 +66,6 @@ class Time {
 
 //objects
 var world = new World();
-var mexikanec = new Mexikanec();
-var wall = new Wall(1000);
-for (i=0; i<=nwall;i++){
-    wall.add();
-}
 var time;
 
 
@@ -97,7 +78,9 @@ function koniecHry(){
     document.getElementById("imgbtn").src = "img/restart.png";
     //HighScore();
     world = new World();
+    //noinspection JSAnnotator
     mexikanec = new Mexikanec;
+    //noinspection JSAnnotator
     wall = new Wall(1000);
     for (i=0; i<= nwall; i++){
         wall.add();
@@ -108,6 +91,7 @@ function koniecHry(){
 //optimalizacia
 function deleteWall(){
     if (wall.right < 0){
+        //noinspection JSAnnotator
         wall = wall.isIncoming();
     }
 
@@ -130,7 +114,7 @@ function frame(){
     draw();
     world.move();
     wall.move();
-    time.tick();
+    time.tick;
     wallCollision();
     deleteWall();
 }
