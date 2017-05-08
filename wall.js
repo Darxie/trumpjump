@@ -18,7 +18,7 @@ class Wall extends Object{
         this.dmax = 510;
         this.d = Wall.generate(this.dmin, this.dmax);
         this.incoming = null;
-        this.img.src = "img/wall.png";
+        this.img.src = "img/g5674.png";
 
         this.top = this.y;
         this.bottom = this.y+this.h;
@@ -73,11 +73,17 @@ class Wall extends Object{
     }
 }
 
+const wall = new Wall(600);
+for (i=0; i<=nwall;i++){
+    wall.add();
+}
+
 function wallCollision() {
     var temp = wall;
     while(temp !== null){
         if(temp.collision(mexikanec)){
             //koniec hry
+            audio.play();
             koniecHry();
             break;
         } else {
@@ -85,7 +91,10 @@ function wallCollision() {
         }
     }
 }
-const wall = new Wall(1000);
-for (i=0; i<=nwall;i++){
-    wall.add();
+
+function deleteWall(){
+    var temp = wall;
+    if (wall.right < 0){
+        wall.isIncoming();
+    }
 }

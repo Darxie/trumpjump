@@ -1,6 +1,8 @@
 /**
  * Created by Feldo on 7. 5. 2017.
  */
+var audio = new Audio('maga.mp3');
+
 class Object {
     constructor() {
         this.img = document.createElement("img");

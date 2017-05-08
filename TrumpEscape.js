@@ -2,7 +2,7 @@
 var speed = 28;
 var displacement = 7;
 var surface = 400;
-var nwall = 1000;
+var nwall = 600;
 var loop;
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
@@ -12,13 +12,14 @@ var asset = document.getElementById("asset");
 var highScore = 0;
 var isRunning;
 
+
 //classes
 
 class World {
     constructor() {
         this.x = 0;
         this.y = surface;
-        this.size = 15000;
+        this.size = 10000;
         this.space = 32;
         this.img = document.createElement("img");
         this.img.src = "img/world.png";
@@ -39,11 +40,11 @@ class Time {
     constructor(){
         this.level = 0;
         this.time = 0;
-        this.limit = 10000;
+        this.limit = 10;
         this.interval = 5000/(speed/3);
 
-        //this.sound = document.getElementById("sound");
-        //this.sound.src = "sound/maga.mp3"
+        //this.sound = document.createElement("audio");
+        //this.sound.src = "maga.mp3";
     }
     draw(){
         ctx.font = "25px Arial";
@@ -54,6 +55,7 @@ class Time {
         if(this.time >= this.limit){
             this.time = 0;
             this.level+=2;
+            this.sound.play();
             highScore+=2;
             speed-=3;
             jumpSpeed-=2;
@@ -76,26 +78,15 @@ function koniecHry(){
     isRunning = false;
     asset.style.display = "block";
     document.getElementById("imgbtn").src = "img/restart.png";
-    //HighScore();
-    world = new World();
-    //noinspection JSAnnotator
-    mexikanec = new Mexikanec;
-    //noinspection JSAnnotator
-    wall = new Wall(1000);
+    new Wall(600);
+    new Mexikanec();
+    speed = 28;
+    jumpSpeed = 6;
     for (i=0; i<= nwall; i++){
         wall.add();
     }
 }
 
-
-//optimalizacia
-function deleteWall(){
-    if (wall.right < 0){
-        //noinspection JSAnnotator
-        wall = wall.isIncoming();
-    }
-
-}
 //global functions
 
 /*function HighScore(){
@@ -116,6 +107,7 @@ function frame(){
     wall.move();
     time.tick;
     wallCollision();
+    deleteWall();
     deleteWall();
 }
 
