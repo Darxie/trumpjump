@@ -1,7 +1,7 @@
 /**
  * Created by Feldo on 4.5.2017.
  */
-var jumpSpeed = 6;
+var jumpSpeed = 8;
 var displacementOfJump = 4;
 var canJump = true;
 var jump;
@@ -63,4 +63,4 @@ function jumping(event){
     }
 }
 
-const mexikanec = new Mexikanec();
+let mexikanec = new Mexikanec();

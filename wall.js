@@ -73,7 +73,7 @@ class Wall extends Object{
     }
 }
 
-const wall = new Wall(600);
+let wall = new Wall(600);
 for (i=0; i<=nwall;i++){
     wall.add();
 }
@@ -94,7 +94,7 @@ function wallCollision() {
 
 function deleteWall(){
     var temp = wall;
-    if (wall.right < 0){
-        wall.isIncoming();
+    if (temp.right < 0){
+        temp.isIncoming();
     }
 }

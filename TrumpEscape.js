@@ -10,104 +10,48 @@ var sirka = canvas.width;
 var vyska = canvas.height;
 var asset = document.getElementById("asset");
 var highScore = 0;
-var isRunning;
-
-
-//classes
-
-class World {
-    constructor() {
-        this.x = 0;
-        this.y = surface;
-        this.size = 10000;
-        this.space = 32;
-        this.img = document.createElement("img");
-        this.img.src = "img/world.png";
-    }
-    draw(){
-        var tx = this.x;
-        for (var i=0; i<=this.size; i++){
-            ctx.drawImage(this.img, tx, this.y);
-            tx+=this.space;
-        }
-    }
-    move(){
-        this.x-=displacement;
-    }
-}
-
-class Time {
-    constructor(){
-        this.level = 0;
-        this.time = 0;
-        this.limit = 10;
-        this.interval = 5000/(speed/3);
-
-        //this.sound = document.createElement("audio");
-        //this.sound.src = "maga.mp3";
-    }
-    draw(){
-        ctx.font = "25px Arial";
-        ctx.fillText(this.level.toString(), 750, 40);
-    }
-    tick(){
-        this.time+=this.interval;
-        if(this.time >= this.limit){
-            this.time = 0;
-            this.level+=2;
-            this.sound.play();
-            highScore+=2;
-            speed-=3;
-            jumpSpeed-=2;
-            this.interval = Math.floor(1000/speed);
-            clearInterval(loop);
-            loop = setInterval("frame()", speed);
-        }
-    }
-}
+var isRunning = false;
 
 //objects
 var world = new World();
 var time;
 
-
-//control functions
-
-function koniecHry(){
+function koniecHry() {
     clearInterval(loop);
     isRunning = false;
+    console.log("")
     asset.style.display = "block";
     document.getElementById("imgbtn").src = "img/restart.png";
-    new Wall(600);
-    new Mexikanec();
+    wall = new Wall(600);
+    mexikanec = new Mexikanec();
     speed = 28;
     jumpSpeed = 6;
-    for (i=0; i<= nwall; i++){
+    for ( i = 0; i <= nwall; i++ ) {
         wall.add();
     }
 }
 
-//global functions
+function displayInstructions() {
+   if (!isRunning) {
+       ctx.fillText("Use UP arrow to jump", 40, 200);
+   }
+}
 
-/*function HighScore(){
-    draw(ctx.fillText(highScore.toString(),400, 150));
-
-}*/
-function draw(){
-    ctx.clearRect(0,0, sirka, vyska);
+function draw() {
+    ctx.clearRect(0, 0, sirka, vyska);
     world.draw();
     mexikanec.draw();
     wall.draw();
     time.draw();
+    displayInstructions();
 }
 
-function frame(){
+function frame() {
     draw();
     world.move();
     wall.move();
     time.tick;
     wallCollision();
-    deleteWall();
     deleteWall();
 }
 
@@ -115,4 +59,5 @@ function initialize() {
     asset.style.display = "none";
     loop = setInterval("frame()", speed);
     time = new Time();
+    isRunning = true;
 }
