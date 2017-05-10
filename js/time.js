@@ -5,12 +5,12 @@ class Time {
     constructor(){
         this.level = 0;
         this.time = 0;
-        this.limit = 1000;
-        this.interval = 1000/speed;
+        this.limit = 50;
+        this.interval = 10;
     }
     draw(){
-        ctx.font = "25px Arial";
-        ctx.fillText(this.level.toString(), 750, 40);
+        //ctx.font = "25px Arial";
+        //ctx.fillText("Score: " + this.score.toString(), 750, 40);
     }
     tick(){
         this.time+=this.interval;
@@ -19,7 +19,9 @@ class Time {
             this.level+=2;
             speed-=3;
             jumpSpeed-=2;
-            this.interval = Math.floor(1000/speed);
+            score++;
+            this.interval -= 5;
+            //this.interval = Math.floor(1000/speed);
             clearInterval(loop);
             loop = setInterval("frame()", speed);
         }
