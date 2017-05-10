@@ -19,7 +19,7 @@ var time;
 function koniecHry() {
     clearInterval(loop);
     isRunning = false;
-    console.log("")
+    document.getElementById("instrWhileGameOver").style.display="initial";
     asset.style.display = "block";
     document.getElementById("imgbtn").src = "img/restart.png";
     wall = new Wall(600);
@@ -57,6 +57,8 @@ function frame() {
 
 function initialize() {
     asset.style.display = "none";
+    document.getElementById("instructions").style.display="none";
+    document.getElementById("instrWhileGameOver").style.display="none";
     loop = setInterval("frame()", speed);
     time = new Time();
     isRunning = true;

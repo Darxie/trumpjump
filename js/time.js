@@ -17,8 +17,8 @@ class Time {
         if(this.time >= this.limit){
             this.time = 0;
             this.level+=2;
-            speed+=3;
-            jumpSpeed+=2;
+            speed-=3;
+            jumpSpeed-=2;
             this.interval = Math.floor(1000/speed);
             clearInterval(loop);
             loop = setInterval("frame()", speed);
